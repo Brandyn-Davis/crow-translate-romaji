@@ -2,3 +2,6 @@
 
 Uses [Cutlet](https://github.com/polm/cutlet) to convert Japanese source text to romaji on top of everything [Crow Translate](https://github.com/crow-translate/crow-translate) does
 
+<p>
+![sample screenshot](https://github.com/Brandyn-Davis/crow-translate-romaji/tree/master/data/screenshots/crow-romaji-screenshot.png)
+</p>
