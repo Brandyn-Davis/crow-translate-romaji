@@ -14,4 +14,4 @@ The code is from Crow Translate's crow-translate-2.10.4-source.tar.gz release wh
 ## Releases
 I have one DEB build in [Releases](https://github.com/Brandyn-Davis/crow-translate-romaji/releases).
 
-I'll pay $15 to anyone who can get it running on Windows! Contact me at my email: brandyndavis3141@gmail.com.
+**I'll pay $15 to anyone who can get it running on Windows!** Contact me at my email: brandyndavis3141@gmail.com.
