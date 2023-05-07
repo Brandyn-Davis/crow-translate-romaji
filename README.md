@@ -5,3 +5,5 @@ Uses [Cutlet](https://github.com/polm/cutlet) to convert Japanese source text to
 <p align="center">
   <img src="https://raw.githubusercontent.com/Brandyn-Davis/crow-translate-romaji/master/data/screenshots/crow-romaji-screenshot.png">
 </p>
+
+I'll pay $10 to anyone who can get it running on Windows
