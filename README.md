@@ -7,7 +7,9 @@ Converts Japanese source text to romaji in [Crow Translate](https://github.com/c
 </p>
 
 ## Details
-main.cpp creates a Python file containing a function that returns romaji with Cutlet. translationedit.cpp then uses the Python/C API to run the Python file and displays the text
+**main.cpp** creates a Python file containing a function that returns romaji with Cutlet. **translationedit.cpp** then uses the Python/C API to run the Python file and displays the text
+
+The code is from Crow Translate's crow-translate-2.10.4-source.tar.gz release which has all the submodules
 
 ## Releases
 I have one Debian build in [Releases](https://github.com/Brandyn-Davis/crow-translate-romaji/releases)
