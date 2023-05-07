@@ -24,6 +24,7 @@
 
 #include <QTextEdit>
 
+
 class TranslationEdit : public QTextEdit
 {
     Q_OBJECT

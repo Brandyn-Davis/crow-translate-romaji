@@ -17,9 +17,54 @@
  *  along with Crow Translate. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#define PY_SSIZE_T_CLEAN
+#include <Python.h>
+
 #include "translationedit.h"
 
 #include "contextmenu.h"
+
+class Romajify {
+    public:
+        Romajify()
+	{
+            setenv("PYTHONPATH", "./.crow-translate", 1);
+            Py_Initialize();
+        }
+
+        ~Romajify()
+	{
+            Py_Finalize();
+        }
+
+        std::string romajify(const char* jpText)
+	{
+            pName = PyUnicode_FromString((char*)"romaji");
+            pModule = PyImport_Import(pName);
+            pDict = PyModule_GetDict(pModule);
+            pFunc = PyDict_GetItemString(pDict, (char*)"romajify");
+            pArgs = PyTuple_Pack(1, PyUnicode_FromString(jpText));
+            
+            if (PyCallable_Check(pFunc))
+            	presult = PyObject_CallObject(pFunc, pArgs);
+            else
+            	return "[Ran into error!]";
+            
+            std::string result(PyUnicode_AsUTF8(presult));
+            
+            Py_XDECREF(presult);
+            Py_XDECREF(pArgs);
+            Py_XDECREF(pModule);
+            Py_XDECREF(pName);
+            
+            return result;
+        }
+
+    private:
+        PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *presult;
+};
+
+Romajify romajify;
 
 TranslationEdit::TranslationEdit(QWidget *parent)
     : QTextEdit(parent)
@@ -64,6 +109,25 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
         append(QStringLiteral("<font color=\"grey\">[%1]</font>").arg(translator->sourceTranscription()));
 
     append({}); // Add new line before translation options
+
+    // ROMAJI
+    if (translator->sourceLanguage() == 48 && !translator->source().isEmpty()) // 48 represents japanese language
+    {
+        const char* result = romajify.romajify(translator->source().toLocal8Bit().data()).c_str();
+
+        append(QStringLiteral("<font color=\"grey\">%1</font>").arg(tr("Romaji:")));
+
+        QTextBlockFormat indent;
+        indent.setTextIndent(20);
+        textCursor().setBlockFormat(indent);
+    
+        append(QStringLiteral("<font color=\"grey\"><i>%1</i></font>").arg(result));
+
+        indent.setTextIndent(0);
+        textCursor().setBlockFormat(indent);
+        append({});
+    }
+
 
     // Translation options
     if (!translator->translationOptions().isEmpty()) {

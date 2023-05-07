@@ -21,6 +21,7 @@
 #include "cmake.h"
 #include "mainwindow.h"
 #include "singleapplication.h"
+#include <fstream>
 
 #ifdef Q_OS_UNIX
 #include "ocr/ocr.h"
@@ -63,6 +64,11 @@ int launchGui(int argc, char *argv[])
     SingleApplication app(argc, argv);
 
     AppSettings().setupLocalization();
+
+    // create python file to be run for translation
+    std::ofstream PythonFile("./romaji.py");
+    PythonFile << "import cutlet\ndef romajify(jpStr): return cutlet.Cutlet().romaji(jpStr)";
+    PythonFile.close();
 
     MainWindow window;
 

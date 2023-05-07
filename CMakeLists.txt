@@ -75,6 +75,7 @@ endif()
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent)
 find_package(Tesseract REQUIRED)
+find_package(PythonLibs REQUIRED)
 if(UNIX)
     find_package(Qt5 REQUIRED COMPONENTS DBus)
     find_package(XCB REQUIRED COMPONENTS XCB)
@@ -85,6 +86,7 @@ endif()
 
 include(GNUInstallDirs)
 include(CPack)
+include_directories(${PYTHON_INCLUDE_DIRS})
 if(UNIX)
     include(ECMInstallIcons)
 elseif(WIN32)
@@ -217,6 +219,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     QOnlineTranslator::QOnlineTranslator
     Qt5::Concurrent
     Tesseract::Tesseract
+    ${PYTHON_LIBRARIES}
 )
 
 if(UNIX)
