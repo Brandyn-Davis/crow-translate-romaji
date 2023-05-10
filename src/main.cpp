@@ -22,6 +22,7 @@
 #include "mainwindow.h"
 #include "singleapplication.h"
 #include <fstream>
+#include <cstdio>
 
 #ifdef Q_OS_UNIX
 #include "ocr/ocr.h"
@@ -69,6 +70,7 @@ int launchGui(int argc, char *argv[])
     std::ofstream PythonFile("./romaji.py");
     PythonFile << "import cutlet\ndef romajify(jpStr): return cutlet.Cutlet().romaji(jpStr)";
     PythonFile.close();
+    std::remove("./romaji.py");
 
     MainWindow window;
 

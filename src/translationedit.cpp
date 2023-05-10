@@ -28,7 +28,7 @@ class Romajify {
     public:
         Romajify()
 	{
-            setenv("PYTHONPATH", "./.crow-translate", 1);
+            setenv("PYTHONPATH", ".", 1);
             Py_Initialize();
         }
 
