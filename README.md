@@ -12,6 +12,6 @@ Converts Japanese source text to romaji in [Crow Translate](https://github.com/c
 The code is from Crow Translate's crow-translate-2.10.4-source.tar.gz release which has all the submodules.
 
 ## Releases
-I have one DEB build in [Releases](https://github.com/Brandyn-Davis/crow-translate-romaji/releases).
+I have a DEB build in [Releases](https://github.com/Brandyn-Davis/crow-translate-romaji/releases).
 
 **I'll pay $15 to anyone who can get it running on Windows!** Contact me at my email: brandyndavis3141@gmail.com.
